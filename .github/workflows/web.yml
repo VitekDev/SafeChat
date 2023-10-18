@@ -31,6 +31,8 @@ jobs:
 
       - name: 🎉 Build Web
         uses: bluefireteam/flutter-gh-pages@v7
+        with:
+          baseHref: /SafeChat/
         
       - name: 🎉 Build Android
         run: flutter build apk
