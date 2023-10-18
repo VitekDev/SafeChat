@@ -1,4 +1,4 @@
-name: Gh-Pages
+name: Build
 
 on:
   push:
@@ -36,7 +36,8 @@ jobs:
         
       - name: 🎉 Build Android
         run: flutter build apk
-      - uses: actions/upload-artifact@v1
+      - name: 🎉 Publish
+        uses: actions/upload-artifact@v1
         with:
           name: SafeChat
-          path: build/app/outputs/apk/release/SafeChat.apk
+          path: build/app/outputs/apk/release/app-release.apk
