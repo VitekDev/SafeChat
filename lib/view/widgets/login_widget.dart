@@ -1,4 +1,6 @@
 // ignore_for_file: unused_import
+import 'dart:io';
+
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/gestures.dart';
@@ -35,8 +37,7 @@ class _LoginWidgetState extends State<LoginWidget> {
   }
 
   @override
-  Widget build(BuildContext context) =>
-      SingleChildScrollView(
+  Widget build(BuildContext context) => SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Form(
           key: formKey,
@@ -44,7 +45,11 @@ class _LoginWidgetState extends State<LoginWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 60),
-              const FlutterLogo(size: 120),
+              const Image(
+                image: NetworkImage(
+                    'https://raw.githubusercontent.com/VitekDev/SafeChat/master/Icon.png'),
+                width: 220,
+              ),
               const SizedBox(height: 40),
               TextFormField(
                 controller: emailController,
@@ -53,12 +58,11 @@ class _LoginWidgetState extends State<LoginWidget> {
                   labelText: 'Email',
                   border: OutlineInputBorder(),
                 ),
-                autovalidateMode:
-                    AutovalidateMode.onUserInteraction,
-                validator: (email) => email != null &&
-                        !EmailValidator.validate(email)
-                    ? 'Enter a valid email'
-                    : null,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (email) =>
+                    email != null && !EmailValidator.validate(email)
+                        ? 'Enter a valid email'
+                        : null,
               ),
               const SizedBox(height: 20),
               TextFormField(
@@ -69,12 +73,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                   border: OutlineInputBorder(),
                 ),
                 obscureText: true,
-                autovalidateMode:
-                    AutovalidateMode.onUserInteraction,
-                validator: (value) =>
-                    value != null && value.length < 6
-                        ? 'Enter min. 6 characters'
-                        : null,
+                autovalidateMode: AutovalidateMode.onUserInteraction,
+                validator: (value) => value != null && value.length < 6
+                    ? 'Enter min. 6 characters'
+                    : null,
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
@@ -94,23 +96,18 @@ class _LoginWidgetState extends State<LoginWidget> {
                   'Forgot Password?',
                   style: TextStyle(
                     decoration: TextDecoration.underline,
-                    color: Theme.of(context)
-                        .colorScheme
-                        .secondary,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontSize: 20,
                   ),
                 ),
-                onTap: () => Navigator.of(context)
-                    .push(MaterialPageRoute(
-                  builder: (context) =>
-                      const ForgotPasswordPage(),
+                onTap: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => const ForgotPasswordPage(),
                 )),
               ),
               const SizedBox(height: 24),
               RichText(
                 text: TextSpan(
-                  style: const TextStyle(
-                      color: Colors.black, fontSize: 20),
+                  style: const TextStyle(color: Colors.black, fontSize: 20),
                   text: 'No account?  ',
                   children: [
                     TextSpan(
@@ -118,11 +115,8 @@ class _LoginWidgetState extends State<LoginWidget> {
                         ..onTap = widget.onClickedSignUp,
                       text: 'Sign Up',
                       style: TextStyle(
-                        decoration:
-                            TextDecoration.underline,
-                        color: Theme.of(context)
-                            .colorScheme
-                            .secondary,
+                        decoration: TextDecoration.underline,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ],
@@ -140,13 +134,11 @@ class _LoginWidgetState extends State<LoginWidget> {
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (context) =>
-          const Center(child: CircularProgressIndicator()),
+      builder: (context) => const Center(child: CircularProgressIndicator()),
     );
 
     try {
-      await FirebaseAuth.instance
-          .signInWithEmailAndPassword(
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
@@ -162,7 +154,6 @@ class _LoginWidgetState extends State<LoginWidget> {
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
 
-    navigatorKey.currentState!
-        .popUntil(((route) => route.isFirst));
+    navigatorKey.currentState!.popUntil(((route) => route.isFirst));
   }
 }
