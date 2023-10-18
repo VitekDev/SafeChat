@@ -26,8 +26,11 @@ jobs:
       #     echo "    die('ERROR: Could not connect. ' . mysqli_connect_error());" >> web/chat/Auth/config.php
       #     echo "}" >> web/chat/Auth/config.php
           
-      - name: 🎉 Build
-        uses: subosito/flutter-action@v1
+      
 
       - name: 🎉 Build Web
+        uses: subosito/flutter-action@v1
         uses: bluefireteam/flutter-gh-pages@v7
+        
+      - name: 🎉 Build Android
+        uses: Dank-del/flutter-build-and-publish-action@v1
