@@ -34,7 +34,7 @@ jobs:
         
       - name: 🎉 Build Android
         run: flutter build apk
-        uses: actions/upload-artifact@v1
-          with:
-            name: SafeChat
-            path: build/app/outputs/apk/release/SafeChat.apk
+      - uses: actions/upload-artifact@v1
+        with:
+          name: SafeChat
+          path: build/app/outputs/apk/release/SafeChat.apk
