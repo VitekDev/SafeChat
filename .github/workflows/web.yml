@@ -6,11 +6,31 @@ on:
 
 jobs:
   build:
+    name: 🎉 Build
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2 # Only works with v2
-      - uses: subosito/flutter-action@v1
-      - uses: erickzanardo/flutter-gh-pages@v7
-        with:
-          baseHref: /SafeChat/
+      - name: 🚚 Get latest code
+        uses: actions/checkout@v2
+
+      # - name: 🧩 Insert Secrets into PHP Code
+      #   run: |
+      #     echo "<?php" > web/chat/Auth/config.php
+      #     echo "define('DB_SERVER', 'localhost');" >> web/chat/Auth/config.php
+      #     echo "define('DB_USERNAME', '${{ secrets.LOGIN_CHAT_NAME }}');" >> web/chat/Auth/config.php
+      #     echo "define('DB_PASSWORD', '${{ secrets.LOGIN_CHAT_PASS }}');" >> web/chat/Auth/config.php
+      #     echo "define('DB_NAME', '${{ secrets.LOGIN_CHAT_NAME }}');" >> web/chat/Auth/config.php
+      #     echo "" >> web/chat/Auth/config.php
+      #     echo "\$link = mysqli_connect(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);" >> web/chat/Auth/config.php
+      #     echo "if(\$link === false){" >> web/chat/Auth/config.php
+      #     echo "    die('ERROR: Could not connect. ' . mysqli_connect_error());" >> web/chat/Auth/config.php
+      #     echo "}" >> web/chat/Auth/config.php
+          
+      
+
+      - name: 🎉 Build Web
+        uses: subosito/flutter-action@v1
+        uses: bluefireteam/flutter-gh-pages@v7
+        
+      - name: 🎉 Build Android
+        uses: Dank-del/flutter-build-and-publish-action@v1
