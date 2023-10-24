@@ -1,2 +1,0 @@
-# SafeChat
-Very safe chat
