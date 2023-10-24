@@ -45,13 +45,13 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyD6PoQNII_Y-p7ydvcUzTL26VNe4GT71Zc',
-    appId: '1:80078589156:web:4767afd8b5845d3c3e30f1',
-    messagingSenderId: '80078589156',
-    projectId: 'chat-92d56',
-    authDomain: 'chat-92d56.firebaseapp.com',
-    storageBucket: 'chat-92d56.appspot.com',
-    measurementId: 'G-YW5EG1LDRL',
+    apiKey: '${{secrets.APIKEY }}',
+    appId: '${{secrets.APPID }}',
+    messagingSenderId: '${{secrets.MESSAGINGSENDERID }}',
+    projectId: '${{secrets.PROJECTID }}',
+    authDomain: '${{secrets.AUTHDOMAIN }}',
+    storageBucket: '${{secrets.STORAGEBUCKET }}',
+    measurementId: '${{secrets.MEASUREMENTID }}',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
